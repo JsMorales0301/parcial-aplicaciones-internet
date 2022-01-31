@@ -1,28 +1,16 @@
 <?php
 
-class Conexion
-{
-    private $host;
-    private $user;
-    private $pass;
-    private $db;
-    private $conexion;
+$usuario = "root";
+$contraseña = "1234";
+$nombre_bd = "escuela";
 
-    public function __construct()
-    {
-        $this->host = "localhost";
-        $this->user = "root";
-        $this->pass = "1234";
-        $this->db = "escuela";
-    }
-
-    public function abrir()
-    {
-        $this->conexion = new mysqli($this->host, $this->user, $this->pass, $this->db);
-        $this->conexion->set_charset("utf8");
-        if ($this->conexion->connect_errno) {
-            echo "Fallo al conectar a la base de datos";
-            return;
-        }
-    }
+try {
+    $bd = new PDO(
+        'mysql:host=localhost:3200;dbname=' . $nombre_bd,
+        $usuario,
+        $contraseña,
+        array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
+    );
+} catch (Exception $e) {
+    print_r("Problemas de conexión: " . $e->getMessage());
 }

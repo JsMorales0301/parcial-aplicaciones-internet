@@ -3,6 +3,7 @@ include '../view/home.php';
 ?>
 
 <body>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6 p-3">
